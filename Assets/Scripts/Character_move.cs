@@ -7,6 +7,8 @@ public class Character_move : MonoBehaviour
 {
     private InputAction move;
     private Vector2 rottate;
+    private Vector2 moveVector = new Vector2(0, 1);
+    [SerializeField] private Rigidbody2D _rigidbody;
     [SerializeField] private float moveSpeed;
     // Start is called before the first frame update
     void Start()
@@ -20,25 +22,30 @@ public class Character_move : MonoBehaviour
     void Update()
     {
         var moveValue = move.ReadValue<Vector2>();
-        transform.Translate(0, moveSpeed * Time.deltaTime, 0);
+        _rigidbody.MovePosition(_rigidbody.position + moveVector * moveSpeed * Time.deltaTime);
+
         Debug.Log(move.ReadValue<Vector2>());
 
         if (moveValue.x > 0)
         {
             transform.rotation = Quaternion.Euler(0,0,-90);
+            moveVector = new Vector2(1,0);
         }
         if (moveValue.x < 0)
         {
             transform.rotation = Quaternion.Euler(0, 0, 90);
+            moveVector = new Vector2(-1, 0);
         }
         if(moveValue.y > 0)
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);
+            moveVector = new Vector2(0,1);
 
         }
         if (moveValue.y < 0)
         {
             transform.rotation = Quaternion.Euler(0, 0, 180);
+            moveVector = new Vector2(0,-1);
         }
     }
 } 
