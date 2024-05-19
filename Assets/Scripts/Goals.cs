@@ -6,8 +6,10 @@ using UnityEngine.UI;
 
 public class Goals : MonoBehaviour
 {
+
     public Sprite newSprite;
     private SpriteRenderer image;
+
 
     public bool isGoal = false;
     private CreateGoal _createGoal;
