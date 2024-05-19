@@ -3,11 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class Goals : MonoBehaviour
 {
 
     public Sprite newSprite;
+    private Sprite tmp;
     private SpriteRenderer image;
 
 
@@ -17,6 +19,7 @@ public class Goals : MonoBehaviour
     {
         image = GetComponent<SpriteRenderer>();
         _createGoal = GameObject.FindObjectOfType<CreateGoal>();
+        tmp = GetComponent<SpriteRenderer>().sprite;
     }
     private void Update() 
     {
@@ -36,6 +39,9 @@ public class Goals : MonoBehaviour
             _createGoal.OnGoal();
             Debug.Log("Goal: " + name + " has been hit by " + other.gameObject.name);
             image.sprite = newSprite;
+            DOVirtual.DelayedCall(3, () => {
+                image.sprite = tmp;
+            });
         }
     }
 }

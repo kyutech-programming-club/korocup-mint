@@ -34,28 +34,29 @@ public class Wape : MonoBehaviour
      x = transform.position.x - EnemyPostion.x + PlayerPosiiton.x - Wapepointposiiton.x;  
      y = transform.position.y - EnemyPostion.y + PlayerPosiiton.y - Wapepointposiiton.y;     
     }
-    void OnTriggerEnter2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        Wapeobject = other.gameObject;
+        Wapeobject = collision.gameObject;
         Wapeobject.transform.position = Wapepointposiiton;
-        if (other.gameObject.transform.tag == "Player")
+        if (collision.gameObject.transform.tag == "Player")
         {
-        absdistancex = Mathf.Abs(Enemy.transform.position.x - Player.transform.position.x);
-        absdistancey = Mathf.Abs(Enemy.transform.position.y - Player.transform.position.y);
-        absx = Mathf.Abs(x);
-        absy = Mathf.Abs(y);
-        if (absx < absdistancex)
+            absdistancex = Mathf.Abs(Enemy.transform.position.x - Player.transform.position.x);
+            absdistancey = Mathf.Abs(Enemy.transform.position.y - Player.transform.position.y);
+            absx = Mathf.Abs(x);
+            absy = Mathf.Abs(y);
+            if (absx < absdistancex)
+            {
+                AdvanceEnemy.Wape_judge = true;
+            }
+            else
+            {
+                AdvanceEnemy.Wape_judge = false;
+            }
+        }
+        else if (collision.gameObject.transform.tag == "Enemy")
         {
-        AdvanceEnemy.Wape_judge = true;
+            AdvanceEnemy.Wape_judge = false;
         }
-        else
-        {
-        AdvanceEnemy.Wape_judge = false;
-        }
-        }
-       else if (other.gameObject.transform.tag == "Enemy")
-       {
-        AdvanceEnemy.Wape_judge = false;
-       }
-}
+    }
+    
 }

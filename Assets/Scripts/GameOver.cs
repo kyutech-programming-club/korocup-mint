@@ -9,20 +9,24 @@ using UnityEngine.UI;
 public class GameOver : MonoBehaviour
 {
     [SerializeField] private float delayTime;
+    public ScreenManager ScreenManager;
     // Start is called before the first frame update
     void Start()
     {
-        GameFinish();
+
     }
 
 
     public void GameFinish()
     {
         Text tmpro = GetComponent<Text>();
-        DOVirtual.DelayedCall(delayTime, () => {
+        DOVirtual.DelayedCall(0, () => {
             var text = "GameOver";
             tmpro.DOText(text, 1f).OnComplete(() => {
-                Time.timeScale = 0.0f;
+                DOVirtual.DelayedCall(delayTime, () =>
+                {
+                    ScreenManager.LoadGame("Title");
+                });
             });
         });
     } 

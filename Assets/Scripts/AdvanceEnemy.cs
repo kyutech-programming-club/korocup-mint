@@ -20,11 +20,13 @@ public class AdvanceEnemy : MonoBehaviour
     public bool Wape_judge = false;
     public GameObject wapeObject;
     private GameObject FindObject;
+
+    public GameOver gameOver;
     // Start is called before the first frame update
     void Start()
     {
-   Speedy = 0.1f;
-   Speedx = 0.1f;
+   Speedy = 0.05f;
+   Speedx = 0.05f;
    FindObject = Player;
     }
 
@@ -45,25 +47,22 @@ public class AdvanceEnemy : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collisionInfo)
     {
-     if(collisionInfo.transform.tag == "Plyer")
+     if(collisionInfo.transform.tag == "Player")
      {
-     
+        gameOver.GameFinish();
      }
     }
     void OnTriggerEnter2D(Collider2D other)
       {
         if(other.gameObject.transform.tag == "TurnPoint")
         {
-            if (Wape_judge == true)
-            {
-            FindObject = wapeObject;
-             PlayerSerch();
-            }
-            else
-            {
+            transform.position = other.gameObject.transform.position;
+           
+            
+          
             FindObject = Player;
               PlayerSerch();
-            }
+            
            
         }
       

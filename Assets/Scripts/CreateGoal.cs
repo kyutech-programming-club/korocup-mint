@@ -18,7 +18,7 @@ public class CreateGoal : MonoBehaviour
     }
     public void OnGoal()
     {
-        _photonscore.AddScore();
+        //_photonscore.AddScore();
         _goal.isGoal = false;
         _score.AddScore();
         Create();
