@@ -7,10 +7,12 @@ using TMPro;
 
 public class Score : MonoBehaviour
 {
+
     private int _score = 0;
     private TextMeshProUGUI _scoreText;
     private void Start() 
     {
+        
         _scoreText = GetComponent<TextMeshProUGUI>();
         ResetScore();
     }
