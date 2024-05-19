@@ -24,7 +24,7 @@ public class Character_move : MonoBehaviour
         var moveValue = move.ReadValue<Vector2>();
         _rigidbody.MovePosition(_rigidbody.position + moveVector * moveSpeed * Time.deltaTime);
 
-        Debug.Log(move.ReadValue<Vector2>());
+        // Debug.Log(move.ReadValue<Vector2>());
 
         if (moveValue.x > 0)
         {

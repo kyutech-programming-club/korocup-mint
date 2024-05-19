@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Goals : MonoBehaviour
 {
+   
     public bool isGoal = false;
     private CreateGoal _createGoal;
     private void Start() 
